@@ -3,3 +3,13 @@
     display: flex;
     justify-content: center;
 }
+
+#siteList {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.siteCard {
+    
+}
