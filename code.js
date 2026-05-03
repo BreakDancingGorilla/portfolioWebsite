@@ -5,9 +5,9 @@ const sprite = new Image();
 sprite.src = './spritesheet.png'; 
 
 let currentFrame = 0;
-const totalFrames = 150; // Total number of frames in the whole image
-const framesPerRow = 30; // CHANGE THIS to the actual number of frames in one row
-const frameSize = 16;   
+const totalFrames = 150; // Total count of rats in your image
+const framesPerRow = 30;  // Adjust this based on your spritesheet's width
+const frameSize = 16;     // Size for the tab icon
 
 const canvas = document.createElement('canvas');
 canvas.width = frameSize;
@@ -16,7 +16,7 @@ const ctx = canvas.getContext('2d');
 
 sprite.onload = () => {
     setInterval(() => {
-        // Calculate X and Y position on the grid
+        // Find the specific rat's position in the grid
         const row = Math.floor(currentFrame / framesPerRow);
         const col = currentFrame % framesPerRow;
 
@@ -30,9 +30,10 @@ sprite.onload = () => {
             0, 0, frameSize, frameSize
         );
 
+        // Convert the rat to a favicon URL
         favicon.href = canvas.toDataURL('image/png');
         currentFrame = (currentFrame + 1) % totalFrames;
-    }, 80);
+    }, 60); // 60ms is roughly 16 frames per second for a smooth spin
 };
 
 // Prank logic
