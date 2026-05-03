@@ -14,6 +14,25 @@ function scrollTitle() {
 }
 scrollTitle();
 
+const favicon = document.querySelector('link[rel="icon"]');
+const img = new Image();
+img.src = 'spritesheet.png'; // Path to your single sprite sheet
 
+let frame = 0;
+const totalFrames = 150; // Total number of frames in your sheet
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = 16;
+canvas.height = 16;
+
+img.onload = () => {
+  setInterval(() => {
+    ctx.clearRect(0, 0, 16, 16);
+    // Draws a 16x16 slice from the sprite sheet
+    ctx.drawImage(img, frame * 16, 0, 16, 16, 0, 0, 16, 16);
+    favicon.href = canvas.toDataURL('image/png');
+    frame = (frame + 1) % totalFrames;
+  }, 100); // Adjust speed here
+};
 //For on load.
 });
