@@ -39,13 +39,13 @@ sprite.onload = () => {
 
 // Prank Logic (Keep this the same)
 let scrollInterval;
-const prankMessage = "   Searching: How to be a discord mod...    ";
+const prankMessage = "   How to be a discord mod    ";
 window.onblur = () => {
     let msg = prankMessage;
     scrollInterval = setInterval(() => {
         msg = msg.substring(1) + msg.substring(0, 1);
         document.title = msg;
-    }, 150);
+    }, 1500);
 };
 window.onfocus = () => {
     clearInterval(scrollInterval);
