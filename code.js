@@ -2,48 +2,44 @@ const favicon = document.getElementById('favicon');
 const originalTitle = "portfolio website";
 let currentFrame = 0;
 const totalFrames = 150;
-const framesPerRow = 1800; // 28800 / 16
-const frameSize = 32;
+
+// NEW MATH BASED ON YOUR FILE DIMENSIONS
+const frameSize = 200;       // The actual height of your image
+const framesPerRow = 144;    // 28800 width / 200 frameSize = 144 frames per row
+const tabSize = 16;          // The size of the actual browser tab
 
 const canvas = document.createElement('canvas');
-canvas.width = frameSize;
-canvas.height = frameSize;
+canvas.width = tabSize;
+canvas.height = tabSize;
 const ctx = canvas.getContext('2d');
 
 const sprite = new Image();
-// FIX 1: Allow the canvas to read the image data
 sprite.crossOrigin = "anonymous"; 
 sprite.src = './spritesheet.png';
 
 sprite.onload = () => {
-    console.log("Rat Spritesheet Loaded Successfully!"); // This should now appear in F12
+    console.log("Rat Spritesheet Loaded! Drawing 200px frames...");
     setInterval(() => {
         const row = Math.floor(currentFrame / framesPerRow);
         const col = currentFrame % framesPerRow;
 
-        ctx.clearRect(0, 0, frameSize, frameSize);
+        ctx.clearRect(0, 0, tabSize, tabSize);
+        
+        // This takes the 200px rat and squishes it into the 16px tab
         ctx.drawImage(
             sprite, 
-            col * frameSize, row * frameSize, frameSize, frameSize, 
-            0, 0, frameSize, frameSize
+            col * frameSize, row * frameSize, frameSize, frameSize, // Source (200px)
+            0, 0, tabSize, tabSize                                  // Destination (16px)
         );
 
-        const dataUrl = canvas.toDataURL('image/png');
-        if (favicon) {
-            favicon.href = dataUrl;
-        }
+        favicon.href = canvas.toDataURL('image/png');
         currentFrame = (currentFrame + 1) % totalFrames;
     }, 60);
 };
 
-sprite.onerror = () => {
-    console.error("FAILED to load spritesheet.png. Check the file path!");
-};
-
-// Prank Logic
+// Prank Logic (Keep this the same)
 let scrollInterval;
 const prankMessage = "   Searching: How to be a discord mod...    ";
-
 window.onblur = () => {
     let msg = prankMessage;
     scrollInterval = setInterval(() => {
@@ -51,7 +47,6 @@ window.onblur = () => {
         document.title = msg;
     }, 150);
 };
-
 window.onfocus = () => {
     clearInterval(scrollInterval);
     document.title = originalTitle;
