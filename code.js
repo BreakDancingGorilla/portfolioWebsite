@@ -1,38 +1,40 @@
- addEventListener("load", (event) => {
-window.onblur = function () {
-  document.title = "I miss you... come back! 🥺";
-}
-window.onfocus = function () {
-  document.title = "My Normal Website";
-}
-    
-let msg = "  Wait, did you really just leave me for another tab?  ";
-function scrollTitle() {
-  document.title = msg;
-  msg = msg.substring(1) + msg.substring(0, 1);
-  setTimeout(scrollTitle, 150); // Lower is faster
-}
-scrollTitle();
+const favicon = document.getElementById('favicon');
+const originalTitle = document.title;
 
-const favicon = document.querySelector('link[rel="icon"]');
-const img = new Image();
-img.src = 'spritesheet.png'; // Path to your single sprite sheet
+const sprite = new Image();
+sprite.src = './spritesheet.png'; 
 
-let frame = 0;
-const totalFrames = 150; // Total number of frames in your sheet
+let currentFrame = 0;
+const totalFrames = 150; // Total number of frames in the whole image
+const framesPerRow = 30; // CHANGE THIS to the actual number of frames in one row
+const frameSize = 16;   
+
 const canvas = document.createElement('canvas');
+canvas.width = frameSize;
+canvas.height = frameSize;
 const ctx = canvas.getContext('2d');
-canvas.width = 16;
-canvas.height = 16;
 
-img.onload = () => {
-  setInterval(() => {
-    ctx.clearRect(0, 0, 16, 16);
-    // Draws a 16x16 slice from the sprite sheet
-    ctx.drawImage(img, frame * 16, 0, 16, 16, 0, 0, 16, 16);
-    favicon.href = canvas.toDataURL('image/png');
-    frame = (frame + 1) % totalFrames;
-  }, 100); // Adjust speed here
+sprite.onload = () => {
+    setInterval(() => {
+        // Calculate X and Y position on the grid
+        const row = Math.floor(currentFrame / framesPerRow);
+        const col = currentFrame % framesPerRow;
+
+        const sourceX = col * frameSize;
+        const sourceY = row * frameSize;
+
+        ctx.clearRect(0, 0, frameSize, frameSize);
+        ctx.drawImage(
+            sprite, 
+            sourceX, sourceY, frameSize, frameSize, 
+            0, 0, frameSize, frameSize
+        );
+
+        favicon.href = canvas.toDataURL('image/png');
+        currentFrame = (currentFrame + 1) % totalFrames;
+    }, 80);
 };
-//For on load.
-});
+
+// Prank logic
+window.onblur = () => { document.title = "Searching: How to be a discord mod"; };
+window.onfocus = () => { document.title = originalTitle; };
