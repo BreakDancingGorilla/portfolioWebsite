@@ -3,7 +3,7 @@ const originalTitle = "portfolio website";
 let currentFrame = 0;
 const totalFrames = 150;
 const framesPerRow = 1800; // 28800 / 16
-const frameSize = 16;
+const frameSize = 32;
 
 const canvas = document.createElement('canvas');
 canvas.width = frameSize;
