@@ -1,13 +1,15 @@
 const favicon = document.getElementById('favicon');
-const originalTitle = document.title;
+const originalTitle = "portfolio website";
+let scrollInterval;
 
+// --- 1. SPINNING RAT LOGIC ---
 const sprite = new Image();
 sprite.src = './spritesheet.png'; 
 
 let currentFrame = 0;
-const totalFrames = 150; // Total count of rats in your image
-const framesPerRow = 30;  // Adjust this based on your spritesheet's width
-const frameSize = 16;     // Size for the tab icon
+const totalFrames = 150;    // Change this to the total frames in your rat animation
+const framesPerRow = 1800;  // 28800px width / 16px frame size
+const frameSize = 16;       
 
 const canvas = document.createElement('canvas');
 canvas.width = frameSize;
@@ -16,7 +18,7 @@ const ctx = canvas.getContext('2d');
 
 sprite.onload = () => {
     setInterval(() => {
-        // Find the specific rat's position in the grid
+        // Calculate grid position on the 28800x200 spritesheet
         const row = Math.floor(currentFrame / framesPerRow);
         const col = currentFrame % framesPerRow;
 
@@ -30,12 +32,34 @@ sprite.onload = () => {
             0, 0, frameSize, frameSize
         );
 
-        // Convert the rat to a favicon URL
+        // Update the tab icon
         favicon.href = canvas.toDataURL('image/png');
         currentFrame = (currentFrame + 1) % totalFrames;
-    }, 60); // 60ms is roughly 16 frames per second for a smooth spin
+    }, 60); // 60ms for a smooth spin
 };
 
-// Prank logic
-window.onblur = () => { document.title = "Searching: How to be a discord mod"; };
-window.onfocus = () => { document.title = originalTitle; };
+// --- 2. SCROLLING PRANK LOGIC ---
+const prankMessage = "   Searching: How to be a discord mod...    ";
+
+function startScroll() {
+    let msg = prankMessage;
+    scrollInterval = setInterval(() => {
+        msg = msg.substring(1) + msg.substring(0, 1);
+        document.title = msg;
+    }, 150);
+}
+
+function stopScroll() {
+    clearInterval(scrollInterval);
+    document.title = originalTitle;
+}
+
+// Trigger when user leaves the tab
+window.onblur = () => {
+    startScroll();
+};
+
+// Reset when user returns
+window.onfocus = () => {
+    stopScroll();
+};
