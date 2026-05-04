@@ -86,6 +86,12 @@ background-color: #121212;
     flex-direction: row;
 }
 
+.ctitle {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
 .center {
      align-self: center;
     justify-self: center;
