@@ -1,141 +1,146 @@
+/* --- Global Styles --- */
 body {
     margin: 0;
-background-color: #121212;
-}
-
-.playBox {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-
-
-.gray .card-body {
-    margin-top: 25px;
+    background-color: #121212;
     color: white;
-  background-color: #0B0C10 !important;
-  border-radius: 10px;
-}
-.gray {
-  background-color: white !important; /* Deep Charcoal */
-  color: #121212; /* Light gray text so you can read it */
-}
-.supportDevices {
- justify-self: flex-end;
- justify-content: center;
- align-content: center;
- border-radius: 10px;
- padding-left: 5px;
- padding-right: 5px;
- padding-bottom: 4px;
 }
 
-.red {
-    color: #FF3131;
-}
-
-.neon-green-icon {
-  filter: invert(72%) sepia(96%) saturate(1478%) hue-rotate(63deg) brightness(108%) contrast(124%);
-}
-
-.neon-red-icon {
-  filter: invert(24%) sepia(91%) saturate(5436%) hue-rotate(351deg) brightness(103%) contrast(121%);
-}
-
-
-.green {
-    color: #39FF14;
-}
-
-#aka {
-    padding-left: 20px;
-}
-
-.rainbow-text-animated {
-  background: linear-gradient(to right, #ef3550, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  
-  /* Set background size larger to allow movement */
-  background-size: 400% 100%;
-  
-  /* Apply animation */
-  animation: rainbow-scroll 8s linear infinite;
-}
-
-@keyframes rainbow-scroll {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
+/* --- Header --- */
 #header {
-    color: white;
-    height: 10vh;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    flex-direction: column;
-    padding-top: 10vh;
-    padding-bottom: 10vh;
-}
-#title {
-    display: flex;
-    flex-direction: row;
-}
-
-/* Specifically target the gif inside your card title */
-.card-title img {
-  width: 30px;        /* Adjust size to fit your text */
-  height: auto;
-  margin-left: 10px;  /* Space between text and gif */
-  vertical-align: middle; /* Aligns gif with the middle of the text */
-  display: inline-block;
-}
-
-
-.ctitle {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-
-}
-
-
-.center {
-     align-self: center;
-    justify-self: center;
-}
-#siteList {
+    min-height: 20vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 40px 0;
 }
 
-.siteDis {
+#title {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    align-items: center;
 }
-.siteTitle {
-    justify-self: center;
+
+#aka {
+    padding-left: 20px;
+    margin: 0;
 }
-img {
-  max-width: 100%;
-  height: auto;
- 
+
+/* --- Rainbow Animation --- */
+.rainbow-text-animated {
+    background: linear-gradient(to right, #ef3550, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 400% 100%;
+    animation: rainbow-scroll 8s linear infinite;
+    font-weight: bold;
+}
+
+@keyframes rainbow-scroll {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- NEON GLOW CARDS --- */
+.gray.card {
+     overflow: hidden !important; /* Forces the image to stay inside the rounded corners */
+    background-color: #1f1f1f !important; /* Slightly darker gray for better glow contrast */
+    border: 2px solid #ffc107 !important; 
+    border-radius: 15px;
+    margin: 20px;
+    transition: all 0.3s ease-in-out;
+    /* Static Glow */
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.4); 
+}
+
+.gray.card:hover {
+    transform: translateY(-5px);
+    /* Intense Glow on Hover */
+    box-shadow: 0 0 25px rgba(255, 193, 7, 0.7), 0 0 50px rgba(255, 193, 7, 0.3);
+    border-color: #ffffff !important;
+}
+
+.gray .card-body {
+    background-color: #0B0C10 !important;
+    margin: 12px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* --- NEON GLOW BUTTONS --- */
+.btn-primary {
+    background-color: #121212 !important;
+    color: #39FF14 !important;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #39FF14 !important;
+    color: #121212 !important;
+    box-shadow: 0 0 20px #39FF14, 0 0 40px rgba(57, 255, 20, 0.4);
+}
+
+/* --- Layout Details --- */
+.card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-title img {
+    width: 30px;
+    height: auto;
 }
 
 .card-img-top {
-  border: 1px solid rgb(255, 193, 7); /* Neon Green */
-  border-radius: 15px;      /* Match your card's roundness */
+    object-fit: cover;
+    height: 180px;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+      width: 100%;             /* Fills the width of the card */
+    height: 180px;           /* Sets a consistent height */
+    object-fit: cover;       /* Ensures the image doesn't look squished */
+    display: block;          /* Removes tiny gaps at the bottom of the image */
+    border-bottom: 2px solid #ffc107; /* Clear line between image and body */
 }
-.siteCard {
-    width: 50vw;
-      border: 10px;
-    border-color: red;
-    background-color: gray;
+
+.playBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.supportDevices {
+    display: flex;
+    gap: 10px;
+    background-color: #1a1a1a;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.supportDevices img {
+    width: 22px;
+}
+
+/* --- Neon Filters --- */
+.neon-green-icon {
+    filter: invert(72%) sepia(96%) saturate(1478%) hue-rotate(63deg) brightness(108%) contrast(124%);
+}
+
+.neon-red-icon {
+    filter: invert(24%) sepia(91%) saturate(5436%) hue-rotate(351deg) brightness(103%) contrast(121%);
+}
+
+#siteList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 40px;
 }

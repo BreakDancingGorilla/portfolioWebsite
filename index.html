@@ -1,73 +1,66 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>DO NOT OPEN</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>Home Of The King</title>
+  <link rel="stylesheet" href="https://jsdelivr.net">
   <link id="favicon" rel="icon" type="image/x-icon" href="./cat.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="./style.css" rel="stylesheet">
 </head>
-
 <body>
 
   <div id="overlay"></div>
 
-  <div id="header" class="d-flex flex-row justify-content-between align-items-center">
-    <div id="title" class="center">
-      <h1>Home Of The King </h1>
-      <p id="aka" class="rainbow-text-animated ">AKA FoodStampChamp / Cam_girl_76</p>
-    </div>
-
-  </div>
-
-
-
-  <div class="gray card shadow-lg p-3 mb-5 rounded border border-warning" id="siteList">
-  <!-- Card 1 -->
-  <div class="gray card shadow-lg p-3 mb-5 rounded border border-warning" style="width: 18rem;">
-    <img src="./diceGameSnap.png" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Dice Game</h5>
-      <p class="card-text">Made in collaboration with Rick Ross</p>
-      <a href="https://breakdancinggorilla.github.io/diceGame/" class="btn btn-primary">Play</a>
+  <div id="header" class="container-fluid d-flex flex-row justify-content-between align-items-center p-4">
+    <div id="title">
+      <h1>Home Of The King</h1>
+      <p id="aka" class="rainbow-text-animated">AKA FoodStampChamp / Cam_girl_76</p>
     </div>
   </div>
 
-  <!-- Card 2 -->
-  <div class="gray card shadow-lg p-3 mb-5 rounded border border-warning" style="width: 18rem;">
-    <img src="./diceGameSnap.png" class="card-img-top" alt="...">
-    <div class="gray card-body">
-      <h5 class="card-title">Dice Game<img src="./output-onlinegiftools.gif"></h5>
-      <p class="card-text">Made in collaboration with Rick Ross</p>
-      <div class="playBox">
-        <a href="https://breakdancinggorilla.github.io/diceGame/" class="btn btn-primary">Play</a>
-        <div class="supportDevices">
-          <img class="neon-red-icon" src="./phone.svg">
-          <img class="neon-green-icon" src="./pc.svg">
-          <img class="neon-red-icon" src="./controller.svg">
+
+  <!-- Container for the cards -->
+  <div id="siteList" class="d-flex flex-wrap justify-content-center p-2">
+
+    <!-- Card 1 -->
+    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
+      <img src="./diceGameSnap.png" class="card-img-top" alt="Dice Game">
+      <div class="card-body">
+        <h5 class="card-title">Dice Game <img src="./money.gif" class="title-gif"></h5>
+        <p class="card-text">Made in collaboration with Rick Ross</p>
+        <div class="playBox">
+          <a href="https://github.io" class="btn btn-primary">Play</a>
+          <div class="supportDevices">
+            <img class="neon-red-icon" src="./phone.svg" alt="phone">
+            <img class="neon-green-icon" src="./pc.svg" alt="pc">
+            <img class="neon-red-icon" src="./controller.svg" alt="controller">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
+      <img src="./diceGameSnap.png" class="card-img-top" alt="Dice Game">
+      <div class="card-body">
+        <h5 class="card-title">Dice Game <img src="./output-onlinegiftools.gif" class="title-gif"></h5>
+        <p class="card-text">Made in collaboration with Rick Ross</p>
+        <div class="playBox">
+          <a href="https://github.io" class="btn btn-primary">Play</a>
+          <div class="supportDevices">
+            <img class="neon-red-icon" src="./phone.svg" alt="phone">
+            <img class="neon-green-icon" src="./pc.svg" alt="pc">
+            <img class="neon-red-icon" src="./controller.svg" alt="controller">
+          </div>
         </div>
       </div>
     </div>
 
   </div>
-</div>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
+  <!-- Scripts -->
+  <script src="https://jquery.com"></script>
   <script src="./code.js"></script>
 </body>
-
 </html>

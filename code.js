@@ -33,7 +33,7 @@ sprite.onload = () => {
 
         favicon.href = canvas.toDataURL('image/png');
         currentFrame = (currentFrame + 1) % totalFrames;
-    }, 60);
+    }, 150);
 };
 
 // --- 2. THE ULTIMATE PRANK LIST ---
