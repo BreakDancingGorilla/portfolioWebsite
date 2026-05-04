@@ -1,6 +1,51 @@
 body {
     margin: 0;
+background-color: #121212;
+}
 
+.playBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+
+.gray .card-body {
+    margin-top: 25px;
+    color: white;
+  background-color: #0B0C10 !important;
+  border-radius: 10px;
+}
+.gray {
+  background-color: white !important; /* Deep Charcoal */
+  color: #121212; /* Light gray text so you can read it */
+}
+.supportDevices {
+ justify-self: flex-end;
+ justify-content: center;
+ align-content: center;
+ border-radius: 10px;
+ padding-left: 5px;
+ padding-right: 5px;
+ padding-bottom: 4px;
+}
+
+.red {
+    color: #FF3131;
+}
+
+.neon-green-icon {
+  filter: invert(72%) sepia(96%) saturate(1478%) hue-rotate(63deg) brightness(108%) contrast(124%);
+}
+
+.neon-red-icon {
+  filter: invert(24%) sepia(91%) saturate(5436%) hue-rotate(351deg) brightness(103%) contrast(121%);
+}
+
+
+.green {
+    color: #39FF14;
 }
 
 #aka {
@@ -27,6 +72,7 @@ body {
 }
 
 #header {
+    color: white;
     height: 10vh;
     display: flex;
     align-content: center;
@@ -63,6 +109,11 @@ img {
   max-width: 100%;
   height: auto;
  
+}
+
+.card-img-top {
+  border: 1px solid rgb(255, 193, 7); /* Neon Green */
+  border-radius: 15px;      /* Match your card's roundness */
 }
 .siteCard {
     width: 50vw;
