@@ -86,11 +86,23 @@ background-color: #121212;
     flex-direction: row;
 }
 
+/* Specifically target the gif inside your card title */
+.card-title img {
+  width: 30px;        /* Adjust size to fit your text */
+  height: auto;
+  margin-left: 10px;  /* Space between text and gif */
+  vertical-align: middle; /* Aligns gif with the middle of the text */
+  display: inline-block;
+}
+
+
 .ctitle {
     display: flex;
     justify-content: space-between;
-    
+    flex-direction: row;
+
 }
+
 
 .center {
      align-self: center;
