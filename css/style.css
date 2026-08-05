@@ -6,24 +6,20 @@ body {
 }
 
 /* --- Header --- */
-#header {
-    min-height: 20vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 40px 0;
-}
+/* Layout comes from Bootstrap utility classes on the element itself.
+   Deliberately no #header rule: an ID beats every utility class, so one
+   here would silently override the d-flex/py-3/border-bottom classes. */
 
 #title {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    line-height: 1.2;
 }
 
 #aka {
-    padding-left: 20px;
     margin: 0;
+    font-size: 0.9rem;
 }
 
 /* --- Rainbow Animation --- */
@@ -90,8 +86,11 @@ body {
     box-shadow: 0 0 20px #39FF14, 0 0 40px rgba(57, 255, 20, 0.4);
 }
 
-#socialLinks {
-    margin-top: 20px;
+/* Bootstrap's .nav-link adds its own padding/hover fill; the white pill
+   styling below comes from .socialLink instead. */
+#socialLinks .nav-link:hover,
+#socialLinks .nav-link:focus {
+    background-color: transparent;
 }
 
 .socialLink {

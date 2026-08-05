@@ -1,418 +1,526 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8" />
+    <title>Home Of The King</title>
+    <link
+      id="favicon"
+      rel="icon"
+      type="image/x-icon"
+      href="./assets/images/cat.jpg"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Home Of The King</title>
-  <link id="favicon" rel="icon" type="image/x-icon" href="./cat.jpg">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="/style.css?v=1.1" rel="stylesheet">
+    <!-- Bootstrap must load BEFORE style.css so our overrides win. -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link href="./css/style.css?v=1.1" rel="stylesheet" />
+  </head>
 
-  <!-- GoatCounter tracking (moved inside <head> — it was floating between </head> and <body>, which is invalid HTML) -->
-  <script data-goatcounter="https://gabrielosborn.goatcounter.com/count"
-          async src="//gc.zgo.at/count.js"></script>
-</head>
+  <body>
 
-<body>
+    
+    <canvas
+      id="bgCanvas"
+      style="position: fixed; top: 0; left: 0; z-index: -1"
+    ></canvas>
 
-  <canvas id="bgCanvas" style="position: fixed; top: 0; left: 0; z-index: -1;"></canvas>
-
-
-  <div id="header" class="container-fluid d-flex flex-row justify-content-between align-items-center p-4">
-    <div id="title">
-      <h1>Home Of The King</h1>
-      <p id="aka" class="rainbow-text-animated">AKA FoodStampChamp</p>
-
+    <div class="container">
+      <header
+        id="header"
+        class="d-flex flex-wrap justify-content-center justify-content-md-between align-items-center py-3 mb-4 border-bottom border-warning"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center mb-3 mb-md-0 text-decoration-none"
+        >
+          <img
+            src="./assets/images/cat.jpg"
+            alt=""
+            width="48"
+            height="48"
+            class="rounded-circle me-3"
+          />
+          <span id="title">
+            <span class="fs-4 text-white">Home Of The King</span>
+            <span id="aka" class="rainbow-text-animated">AKA FoodStampChamp</span>
+          </span>
+        </a>
+        <ul class="nav nav-pills align-items-center" id="socialLinks">
+          <li class="nav-item">
+            <a
+              class="nav-link p-1"
+              href="https://discord.com/users/1500138173378859079"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img class="socialLink" src="./assets/icons/discord.svg" alt="Discord"
+            /></a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link p-1"
+              href="https://github.com/BreakDancingGorilla"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img class="socialLink" src="./assets/icons/github.svg" alt="GitHub"
+            /></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link p-1" href="mailto:gabriel.m.osborn@proton.me"
+              ><img class="socialLink" src="./assets/icons/envelope.svg" alt="Email"
+            /></a>
+          </li>
+        </ul>
+      </header>
     </div>
-    <div id="socialLinks">
-    <a href="https://discord.com/users/1500138173378859079"  target="_blank"><img class="socialLink" src="./discord.svg" alt="discord"></a>
-       <a href="https://github.com/BreakDancingGorilla" target="_blank"><img class="socialLink" src="./github.svg" alt="github"></a>
-       <a href="mailto:gabriel.m.osborn@proton.me"><img class="socialLink" src="./envelope.svg" alt="email"></a>
 
-
+    <!-- Container for the cards -->
+    <div id="siteList" class="d-flex flex-wrap justify-content-center p-2">
+      <!-- Card 1 -->
+      <div
+        class="gray card shadow-lg p-0 m-3 rounded border border-warning"
+        style="width: 18rem"
+      >
+        <img
+          src="./assets/images/changeGame.gif"
+          class="card-img-top"
+          alt="Change Game"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Change Game
+            <img src="./assets/images/money.gif" class="title-gif" />
+          </h5>
+          <p class="card-text">
+            Made in collaboration with Kayne West and proundly sponsored by
+            Yeezy
+          </p>
+          <div class="playBox">
+            <a
+              href="https://breakdancinggorilla.github.io/changeGame/"
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Play</a
+            >
+            <a
+              href="https://github.com/BreakDancingGorilla/changeGame"
+              target="_blank"
+              ><img
+                class="socialLink"
+                src="./assets/icons/github.svg"
+                alt="github"
+            /></a>
+            <div class="supportDevices">
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/phone.svg"
+                alt="phone"
+              />
+              <img
+                class="neon-green-icon"
+                src="./assets/icons/pc.svg"
+                alt="pc"
+              />
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/controller.svg"
+                alt="controller"
+              />
+            </div>
+          </div>
+        </div>
       </div>
-  </div>
 
+      <!-- Card 2 -->
+      <div
+        class="gray card shadow-lg p-0 m-3 rounded border border-warning"
+        style="width: 18rem"
+      >
+        <img
+          src="./assets/images/diceGame.gif"
+          class="card-img-top"
+          alt="Dice Game"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Dice Game <img src="./assets/images/dice.gif" class="title-gif" />
+          </h5>
+          <p class="card-text">
+            Looking for a RainBet sponsorship contact:
+            bootyBoobyBobby@hotmail.com
+          </p>
+          <div class="playBox">
+            <a
+              href="https://breakdancinggorilla.github.io/diceGame/"
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Play</a
+            >
+            <a
+              href="https://github.com/BreakDancingGorilla/diceGame"
+              target="_blank"
+              ><img
+                class="socialLink"
+                src="./assets/icons/github.svg"
+                alt="github"
+            /></a>
+            <div class="supportDevices">
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/phone.svg"
+                alt="phone"
+              />
+              <img
+                class="neon-green-icon"
+                src="./assets/icons/pc.svg"
+                alt="pc"
+              />
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/controller.svg"
+                alt="controller"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- Container for the cards -->
-  <div id="siteList" class="d-flex flex-wrap justify-content-center p-2">
+      <div
+        class="gray card shadow-lg p-0 m-3 rounded border border-warning"
+        style="width: 18rem"
+      >
+        <img
+          src="./assets/images/zombies.gif"
+          class="card-img-top"
+          alt="Zombie Game"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Zombie Game
+            <img src="./assets/images/zombieMine.gif" class="title-gif" />
+          </h5>
+          <p class="card-text">Stolen from Terry Davis</p>
+          <div class="playBox">
+            <a
+              href="https://breakdancinggorilla.github.io/zombies/"
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Play</a
+            >
+            <a
+              href="https://github.com/BreakDancingGorilla/zombies"
+              target="_blank"
+              ><img
+                class="socialLink"
+                src="./assets/icons/github.svg"
+                alt="github"
+            /></a>
+            <div class="supportDevices">
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/phone.svg"
+                alt="phone"
+              />
+              <img
+                class="neon-green-icon"
+                src="./assets/icons/pc.svg"
+                alt="pc"
+              />
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/controller.svg"
+                alt="controller"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <!-- Card 1 -->
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./changeGame.gif" class="card-img-top" alt="Change Game">
-      <div class="card-body">
-        <h5 class="card-title">Change Game <img src="./money.gif" class="title-gif"></h5>
-        <p class="card-text">Made in collaboration with Kayne West and proundly sponsored by Yeezy</p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/changeGame/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/changeGame" target="_blank"><img class="socialLink" src="./github.svg" alt="github"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
+      <div
+        class="gray card shadow-lg p-0 m-3 rounded border border-warning"
+        style="width: 18rem"
+      >
+        <img
+          src="./assets/images/obamaGame.gif"
+          class="card-img-top"
+          alt="Obama Mainframe"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Obama Mainframe<img
+              src="./assets/images/obamaPr.gif"
+              class="title-gif"
+            />
+          </h5>
+          <p class="card-text">
+            First attempt to capture Obama's soul in a cube
+          </p>
+          <div class="playBox">
+            <a
+              href="https://breakdancinggorilla.github.io/obama/"
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Play</a
+            >
+            <a
+              href="https://github.com/BreakDancingGorilla/obama"
+              target="_blank"
+              ><img
+                class="socialLink"
+                src="./assets/icons/github.svg"
+                alt="github"
+            /></a>
+            <div class="supportDevices">
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/phone.svg"
+                alt="phone"
+              />
+              <img
+                class="neon-green-icon"
+                src="./assets/icons/pc.svg"
+                alt="pc"
+              />
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/controller.svg"
+                alt="controller"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="gray card shadow-lg p-0 m-3 rounded border border-warning"
+        style="width: 18rem"
+      >
+        <img
+          src="./assets/images/pathFinding.gif"
+          class="card-img-top"
+          alt="Pathfinding"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Pathfinding<img
+              src="./assets/images/Artificial Intelligence Happy Dance Sticker by achorao_com.gif"
+              class="title-gif"
+            />
+          </h5>
+          <p class="card-text">Stright up a chatgpt copy and paste</p>
+          <div class="playBox">
+            <a
+              href="https://breakdancinggorilla.github.io/gridGame/"
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Play</a
+            >
+            <a
+              href="https://github.com/BreakDancingGorilla/gridGame"
+              target="_blank"
+              ><img
+                class="socialLink"
+                src="./assets/icons/github.svg"
+                alt="github"
+            /></a>
+            <div class="supportDevices">
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/phone.svg"
+                alt="phone"
+              />
+              <img
+                class="neon-green-icon"
+                src="./assets/icons/pc.svg"
+                alt="pc"
+              />
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/controller.svg"
+                alt="controller"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="gray card shadow-lg p-0 m-3 rounded border border-warning"
+        style="width: 18rem"
+      >
+        <img
+          src="./assets/images/dataSite.gif"
+          class="card-img-top"
+          alt="Data Entry"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Data Entry<img src="./assets/images/excel.gif" class="title-gif" />
+          </h5>
+          <p class="card-text">⚠️Warning: contains Excel⚠️</p>
+          <div class="playBox">
+            <a
+              href="https://breakdancinggorilla.github.io/pitfallWeb/"
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Play</a
+            >
+            <a
+              href="https://github.com/BreakDancingGorilla/pitfallWeb"
+              target="_blank"
+              ><img
+                class="socialLink"
+                src="./assets/icons/github.svg"
+                alt="github"
+            /></a>
+            <div class="supportDevices">
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/phone.svg"
+                alt="phone"
+              />
+              <img
+                class="neon-green-icon"
+                src="./assets/icons/pc.svg"
+                alt="pc"
+              />
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/controller.svg"
+                alt="controller"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="gray card shadow-lg p-0 m-3 rounded border border-warning"
+        style="width: 18rem"
+      >
+        <img
+          src="./assets/images/openWorldGame.gif"
+          class="card-img-top"
+          alt="Open World Game"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Open World<img src="./assets/images/trump.gif" class="title-gif" />
+          </h5>
+          <p class="card-text">
+            Backed by over 500 Patron supporters, set to release this fall!
+          </p>
+          <div class="playBox">
+            <a
+              href="https://breakdancinggorilla.github.io/newGame/"
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Play</a
+            >
+            <a
+              href="https://github.com/BreakDancingGorilla/newGame"
+              target="_blank"
+              ><img
+                class="socialLink"
+                src="./assets/icons/github.svg"
+                alt="github"
+            /></a>
+            <div class="supportDevices">
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/phone.svg"
+                alt="phone"
+              />
+              <img
+                class="neon-green-icon"
+                src="./assets/icons/pc.svg"
+                alt="pc"
+              />
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/controller.svg"
+                alt="controller"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="gray card shadow-lg p-0 m-3 rounded border border-warning"
+        style="width: 18rem"
+      >
+        <img
+          src="./assets/images/bounty.gif"
+          class="card-img-top"
+          alt="Bounty Board"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Bounty Board<img
+              src="./assets/images/kanye.gif"
+              class="title-gif"
+            />
+          </h5>
+          <p class="card-text">
+            A board for the fish hunters of upstate New York
+          </p>
+          <div class="playBox">
+            <a
+              href="https://breakdancinggorilla.github.io/myWebsite/"
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Play</a
+            >
+            <a
+              href="https://github.com/BreakDancingGorilla/myWebsite"
+              target="_blank"
+              ><img
+                class="socialLink"
+                src="./assets/icons/github.svg"
+                alt="github"
+            /></a>
+            <div class="supportDevices">
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/phone.svg"
+                alt="phone"
+              />
+              <img
+                class="neon-green-icon"
+                src="./assets/icons/pc.svg"
+                alt="pc"
+              />
+              <img
+                class="neon-red-icon"
+                src="./assets/icons/controller.svg"
+                alt="controller"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Card 2 -->
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./diceGame.gif" class="card-img-top" alt="Dice Game">
-      <div class="card-body">
-        <h5 class="card-title">Dice Game <img src="./dice.gif" class="title-gif"></h5>
-        <p class="card-text">Looking for a RainBet sponsorship contact: bootyBoobyBobby@hotmail.com </p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/diceGame/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/diceGame" target="_blank"><img class="socialLink" src="./github.svg" alt="github"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./zombies.gif" class="card-img-top" alt="Zombie Game">
-      <div class="card-body">
-        <h5 class="card-title">Zombie Game <img src="./zombieMine.gif" class="title-gif"></h5>
-        <p class="card-text">Stolen from Terry Davis</p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/zombies/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/zombies" target="_blank"><img class="socialLink" src="./github.svg" alt="github"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./obamaGame.gif" class="card-img-top" alt="Obama Mainframe">
-      <div class="card-body">
-        <h5 class="card-title">Obama Mainframe<img src="./obamaPr.gif" class="title-gif"></h5>
-        <p class="card-text">First attempt to capture Obama's soul in a cube</p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/obama/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/obama" target="_blank"><img class="socialLink" src="./github.svg" alt="github"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./pathFinding.gif" class="card-img-top" alt="Pathfinding">
-      <div class="card-body">
-        <h5 class="card-title">Pathfinding<img src="./Artificial Intelligence Happy Dance Sticker by achorao_com.gif" class="title-gif"></h5>
-        <p class="card-text">Stright up a chatgpt copy and paste</p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/gridGame/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/gridGame" target="_blank"><img class="socialLink" src="./github.svg" alt="github"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./dataSite.gif" class="card-img-top" alt="Data Entry">
-      <div class="card-body">
-        <h5 class="card-title">Data Entry<img src="./excel.gif" class="title-gif"></h5>
-        <p class="card-text">⚠️Warning: contains Excel⚠️</p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/pitfallWeb/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/pitfallWeb" target="_blank"><img class="socialLink" src="./github.svg" alt="github"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./openWorldGame.gif" class="card-img-top" alt="Open World Game">
-      <div class="card-body">
-        <h5 class="card-title">Open World<img src="./trump.gif" class="title-gif"></h5>
-        <p class="card-text">Backed by over 500 Patron supporters, set to release this fall!</p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/newGame/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/newGame" target="_blank"><img class="socialLink" src="./github.svg" alt="github"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./bounty.gif" class="card-img-top" alt="Bounty Board">
-      <div class="card-body">
-        <h5 class="card-title">Bounty Board<img src="./kanye.gif" class="title-gif"></h5>
-        <p class="card-text">A board for the fish hunters of upstate New York</p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/myWebsite/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/myWebsite" target="_blank"><img class="socialLink" src="./github.svg" alt="github"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Royal visitor counter -->
-  <footer id="visitorCounter" class="d-flex flex-column align-items-center p-4">
-    <p class="counter-label m-0">Loyal subjects who have visited The Kingdom:</p>
-    <p id="stats" class="counter-number m-0">consulting the royal census...</p>
-  </footer>
-
-  <!-- Scripts -->
-  <!-- NOTE: your old jQuery tag pointed at https://jquery.com (the homepage, not the library). -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="./code.js"></script>
-
-  <script>
-    // Real GoatCounter data, dishonest presentation.
-    const ROYAL_OFFSET = 4200000000; // every kingdom inflates its census
-
-    fetch('https://gabrielosborn.goatcounter.com/counter/' +
-          encodeURIComponent(location.pathname) + '.json')
-      .then(r => {
-        if (!r.ok) throw new Error('census unavailable');
-        return r.json();
-      })
-      .then(d => {
-        // d.count arrives as a formatted string like "1,234"
-        const real = parseInt(String(d.count).replace(/,/g, ''), 10) || 0;
-        document.getElementById('stats').textContent =
-          (real + ROYAL_OFFSET).toLocaleString();
-      })
-      .catch(() => {
-        // Ad blocker or counter not enabled yet — stay in character
-        document.getElementById('stats').textContent =
-          'CLASSIFIED BY ROYAL DECREE';
-      });
-  </script>
-
-</body>
-
-</html>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-
-  <title>Home Of The King</title>
-  <link id="favicon" rel="icon" type="image/x-icon" href="./cat.jpg">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="/style.css?v=1.1" rel="stylesheet">
-</head>
-
-<script data-goatcounter="https://gabrielosborn.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
-
-<body>
-
-  <canvas id="bgCanvas" style="position: fixed; top: 0; left: 0; z-index: -1;"></canvas>
-
-
-  <div id="header" class="container-fluid d-flex flex-row justify-content-between align-items-center p-4">
-    <div id="title">
-      <h1>Home Of The King</h1>
-      <p id="aka" class="rainbow-text-animated">AKA FoodStampChamp</p>
-
-    </div>
-    <div id="socialLinks">
-    <a href="https://discord.com/users/1500138173378859079"  target="_blank"><img class="socialLink" src="./discord.svg" alt="phone"></a>
-       <a href="https://github.com/BreakDancingGorilla" target="_blank"><img class="socialLink" src="./github.svg" alt="pc"></a>
-       <a href="https://mailto:gabriel.m.osborn@proton.me" target="_blank"><img class="socialLink" src="./envelope.svg" alt="controller"></a>
-        
-        
-      </div>
-  </div>
-
-
-  <!-- Container for the cards -->
-  <div id="siteList" class="d-flex flex-wrap justify-content-center p-2">
-
-    <!-- Card 1 -->
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./changeGame.gif" class="card-img-top" alt="Dice Game">
-      <div class="card-body">
-        <h5 class="card-title">Change Game <img src="./money.gif" class="title-gif"></h5>
-        <p class="card-text">Made in collaboration with Kayne West and proundly sponsored by Yeezy</p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/changeGame/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/changeGame" target="_blank"><img class="socialLink" src="./github.svg" alt="pc"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./diceGame.gif" class="card-img-top" alt="Dice Game">
-      <div class="card-body">
-        <h5 class="card-title">Dice Game <img src="./dice.gif" class="title-gif"></h5>
-        <p class="card-text">Looking for a RainBet sponsorship contact: bootyBoobyBobby@hotmail.com </p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/diceGame/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/diceGame" target="_blank"><img class="socialLink" src="./github.svg" alt="pc"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./zombies.gif" class="card-img-top" alt="Dice Game">
-      <div class="card-body">
-        <h5 class="card-title">Zombie Game <img src="./zombieMine.gif" class="title-gif"></h5>
-        <p class="card-text">Stolen from Terry Davis</p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/zombies/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/zombies" target="_blank"><img class="socialLink" src="./github.svg" alt="pc"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./obamaGame.gif" class="card-img-top" alt="Dice Game">
-      <div class="card-body">
-        <h5 class="card-title">Obama Mainframe<img src="./obamaPr.gif" class="title-gif"></h5>
-        <p class="card-text">First attempt to capture Obama's soul in a cube</p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/obama/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/obama" target="_blank"><img class="socialLink" src="./github.svg" alt="pc"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./pathFinding.gif" class="card-img-top" alt="Dice Game">
-      <div class="card-body">
-        <h5 class="card-title">Pathfinding<img src="./Artificial Intelligence Happy Dance Sticker by achorao_com.gif" class="title-gif"></h5>
-        <p class="card-text">Stright up a chatgpt copy and paste</p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/gridGame/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/gridGame" target="_blank"><img class="socialLink" src="./github.svg" alt="pc"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./dataSite.gif" class="card-img-top" alt="Dice Game">
-      <div class="card-body">
-        <h5 class="card-title">Data Entry<img src="./excel.gif" class="title-gif"></h5>
-        <p class="card-text">⚠️This site contains the china virus⚠️</p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/pitfallWeb/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/pitfallWeb" target="_blank"><img class="socialLink" src="./github.svg" alt="pc"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-   
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./openWorldGame.gif" class="card-img-top" alt="Dice Game">
-      <div class="card-body">
-        <h5 class="card-title">Open World<img src="./trump.gif" class="title-gif"></h5>
-        <p class="card-text">Backed by over 500 Patron supporters, set to release this fall!</p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/newGame/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/newGame" target="_blank"><img class="socialLink" src="./github.svg" alt="pc"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gray card shadow-lg p-0 m-3 rounded border border-warning" style="width: 18rem;">
-      <img src="./bounty.gif" class="card-img-top" alt="Dice Game">
-      <div class="card-body">
-        <h5 class="card-title">Bounty Board<img src="./kanye.gif" class="title-gif"></h5>
-        <p class="card-text">A board for the fish hunters of upstate New York</p>
-        <div class="playBox">
-          <a href="https://breakdancinggorilla.github.io/myWebsite/" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Play</a>
-             <a href="https://github.com/BreakDancingGorilla/myWebsite" target="_blank"><img class="socialLink" src="./github.svg" alt="pc"></a>
-          <div class="supportDevices">
-            <img class="neon-red-icon" src="./phone.svg" alt="phone">
-            <img class="neon-green-icon" src="./pc.svg" alt="pc">
-            <img class="neon-red-icon" src="./controller.svg" alt="controller">
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Scripts -->
-  <script src="https://jquery.com"></script>
-  <script src="./code.js"></script>
-</body>
-
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/main.js"></script>
+  </body>
 </html>
