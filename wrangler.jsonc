@@ -16,8 +16,7 @@
     {
       "binding": "DB",
       "database_name": "portfolio-logs",
-      // Replace with the id printed by `npx wrangler d1 create portfolio-logs`.
-      "database_id": "REPLACE_WITH_DATABASE_ID"
+      "database_id": "028d6176-0522-40a5-8119-f98393853ef2"
     }
   ]
 }
