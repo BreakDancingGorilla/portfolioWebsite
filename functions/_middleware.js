@@ -2,6 +2,20 @@
 
 const LOG_LIMIT = 1000;
 
+// Times are stored in UTC and shown in Eastern Time.
+const timeFormat = new Intl.DateTimeFormat("en-US", {
+  timeZone: "America/New_York",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "numeric",
+  minute: "2-digit",
+  second: "2-digit",
+  timeZoneName: "short",
+});
+
+const formatTime = (iso) => timeFormat.format(new Date(iso));
+
 export async function onRequest({ request, env, next, waitUntil }) {
   const url = new URL(request.url);
 
@@ -58,13 +72,13 @@ async function serveLogs(url, env) {
 
   const lines = [
     "gabrielosborn.com traffic log",
-    `Generated: ${new Date().toISOString()}`,
+    `Generated: ${formatTime(new Date().toISOString())}`,
     `Total page views: ${totals.total}  |  Unique IPs: ${totals.unique_ips}  |  Last 24h: ${totals.last_day || 0}`,
     `Showing the latest ${visits.length} visits (newest first)`,
     "",
     ...visits.map((v) =>
       [
-        v.time,
+        formatTime(v.time),
         v.ip || "-",
         [v.city, v.country].filter(Boolean).join(", ") || "-",
         v.path,
