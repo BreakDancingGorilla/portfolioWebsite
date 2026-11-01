@@ -1,0 +1,13 @@
+# Files that should never be served as public assets.
+.git
+.claude
+.vscode
+node_modules
+src
+schema.sql
+wrangler.jsonc
+.wranglerignore
+.assetsignore
+.gitignore
+.dev.vars
+toAdd.txt

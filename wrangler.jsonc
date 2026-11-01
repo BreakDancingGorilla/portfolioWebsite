@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "portfoliowebsite",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-07-03",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    // Run the worker before serving files so every page view gets logged.
+    "run_worker_first": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "portfolio-logs",
+      // Replace with the id printed by `npx wrangler d1 create portfolio-logs`.
+      "database_id": "REPLACE_WITH_DATABASE_ID"
+    }
+  ]
+}
