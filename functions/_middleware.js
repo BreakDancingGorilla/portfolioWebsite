@@ -86,6 +86,7 @@ async function serveLogs(url, env) {
 
   const visits = rows.map(describeVisit);
   const people = visits.filter((v) => !v.isBot);
+  const bots = visits.filter((v) => v.isBot);
   const now = Date.now();
   const since = (ms) => visits.filter((v) => now - v.date.getTime() < ms);
   const last24h = since(DAY_MS);
@@ -111,21 +112,10 @@ async function serveLogs(url, env) {
     ...topList("TOP DEVICES", people, (v) => v.device),
     `(Top lists count people only, from the latest ${visits.length} visits.)`,
     "",
-    `RECENT VISITS · newest first · times in ${shortZoneName()}`,
-    rule("─"),
-    table(
-      ["TIME", "WHO", "LOCATION", "DEVICE", "PAGE", "FROM", "IP ADDRESS"],
-      [17, 6, 22, 22, 16, 18, 0],
-      visits.map((v) => [
-        rowTimeFormat.format(v.date),
-        v.isBot ? "bot" : "person",
-        v.location,
-        v.device,
-        v.page,
-        v.from,
-        v.ip,
-      ])
-    ),
+    `Times in ${shortZoneName()}, newest first.`,
+    "",
+    ...visitSection(`PEOPLE (${people.length})`, people),
+    ...visitSection(`BOTS & SCANNERS (${bots.length})`, bots),
   ];
 
   return new Response(lines.join("\n") + "\n", {
@@ -134,6 +124,21 @@ async function serveLogs(url, env) {
       "cache-control": "no-store",
     },
   });
+}
+
+function visitSection(title, visits) {
+  return [
+    title,
+    rule("─"),
+    visits.length
+      ? table(
+          ["TIME", "LOCATION", "DEVICE", "PAGE", "FROM", "IP ADDRESS"],
+          [17, 22, 22, 16, 18, 0],
+          visits.map((v) => [rowTimeFormat.format(v.date), v.location, v.device, v.page, v.from, v.ip])
+        )
+      : "  (none yet)",
+    "",
+  ];
 }
 
 function describeVisit(row) {
