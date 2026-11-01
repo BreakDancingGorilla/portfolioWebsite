@@ -6,5 +6,6 @@ CREATE TABLE IF NOT EXISTS visits (
   city TEXT,
   path TEXT,
   referrer TEXT,
-  user_agent TEXT
+  user_agent TEXT,
+  network TEXT
 );

@@ -26,6 +26,11 @@ const headerTimeFormat = new Intl.DateTimeFormat("en-US", {
   timeZoneName: "short",
 });
 
+// Visitors from cloud/hosting networks are almost always bots or monitors.
+// Cloudflare is left out because its WARP VPN is used by real people.
+const CLOUD_PATTERN =
+  /amazon|aws|google llc|google cloud|microsoft|azure|digitalocean|linode|akamai|ovh|hetzner|vultr|choopa|oracle|alibaba|tencent|leaseweb|contabo|scaleway|m247|datacamp|hostinger|ionos|godaddy|censys|shadowserver|palo alto/i;
+
 // Hides favicon rows logged before file requests were skipped.
 const PAGE_ROWS = "path NOT LIKE '/favicon.ico%'";
 
@@ -57,7 +62,7 @@ async function logVisit(request, url, env) {
   const cf = request.cf || {};
   try {
     await env.DB.prepare(
-      "INSERT INTO visits (time, ip, country, city, path, referrer, user_agent) VALUES (?, ?, ?, ?, ?, ?, ?)"
+      "INSERT INTO visits (time, ip, country, city, path, referrer, user_agent, network) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
     )
       .bind(
         new Date().toISOString(),
@@ -66,7 +71,8 @@ async function logVisit(request, url, env) {
         cf.city || null,
         url.pathname + url.search,
         request.headers.get("referer"),
-        request.headers.get("user-agent")
+        request.headers.get("user-agent"),
+        cf.asOrganization || null
       )
       .run();
   } catch (err) {
@@ -84,7 +90,10 @@ async function serveLogs(url, env) {
     env.DB.prepare(`SELECT COUNT(*) AS total, COUNT(DISTINCT ip) AS unique_ips FROM visits WHERE ${PAGE_ROWS}`).first(),
   ]);
 
-  const visits = rows.map(describeVisit);
+  // An IP seen on a cloud network once is treated as a bot for all its visits,
+  // including ones logged before the network was recorded.
+  const cloudIps = new Set(rows.filter((r) => CLOUD_PATTERN.test(r.network || "")).map((r) => r.ip));
+  const visits = rows.map((row) => describeVisit(row, cloudIps));
   const people = visits.filter((v) => !v.isBot);
   const bots = visits.filter((v) => v.isBot);
   const now = Date.now();
@@ -132,21 +141,22 @@ function visitSection(title, visits) {
     rule("─"),
     visits.length
       ? table(
-          ["TIME", "LOCATION", "DEVICE", "PAGE", "FROM", "IP ADDRESS"],
-          [17, 22, 22, 16, 18, 0],
-          visits.map((v) => [rowTimeFormat.format(v.date), v.location, v.device, v.page, v.from, v.ip])
+          ["TIME", "LOCATION", "DEVICE", "NETWORK", "PAGE", "FROM", "IP ADDRESS"],
+          [17, 22, 22, 22, 16, 18, 0],
+          visits.map((v) => [rowTimeFormat.format(v.date), v.location, v.device, v.network, v.page, v.from, v.ip])
         )
       : "  (none yet)",
     "",
   ];
 }
 
-function describeVisit(row) {
+function describeVisit(row, cloudIps) {
   const ua = row.user_agent || "";
   return {
     date: new Date(row.time),
     ip: row.ip || "-",
-    isBot: !ua || BOT_PATTERN.test(ua),
+    isBot: !ua || BOT_PATTERN.test(ua) || cloudIps.has(row.ip),
+    network: row.network || "-",
     location: [row.city, row.country].filter(Boolean).join(", ") || "Unknown",
     device: describeDevice(ua),
     page: row.path || "/",
