@@ -26,6 +26,9 @@ const headerTimeFormat = new Intl.DateTimeFormat("en-US", {
   timeZoneName: "short",
 });
 
+// Hides favicon rows logged before file requests were skipped.
+const PAGE_ROWS = "path NOT LIKE '/favicon.ico%'";
+
 const BOT_PATTERN =
   /bot|crawl|spider|slurp|scan|curl|wget|python|go-http|java\/|okhttp|axios|node-fetch|headless|httpx|zgrab|palo alto|censys|facebookexternalhit|preview/i;
 
@@ -77,8 +80,8 @@ async function serveLogs(url, env) {
   }
 
   const [{ results: rows }, totals] = await Promise.all([
-    env.DB.prepare("SELECT * FROM visits ORDER BY id DESC LIMIT ?").bind(LOG_LIMIT).all(),
-    env.DB.prepare("SELECT COUNT(*) AS total, COUNT(DISTINCT ip) AS unique_ips FROM visits").first(),
+    env.DB.prepare(`SELECT * FROM visits WHERE ${PAGE_ROWS} ORDER BY id DESC LIMIT ?`).bind(LOG_LIMIT).all(),
+    env.DB.prepare(`SELECT COUNT(*) AS total, COUNT(DISTINCT ip) AS unique_ips FROM visits WHERE ${PAGE_ROWS}`).first(),
   ]);
 
   const visits = rows.map(describeVisit);
@@ -147,7 +150,8 @@ function describeVisit(row) {
 }
 
 function describeDevice(ua) {
-  if (!ua) return "Unknown";
+  if (!ua) return "No browser info";
+  if (/palo alto/i.test(ua)) return "Palo Alto scanner";
   if (BOT_PATTERN.test(ua)) {
     const name = ua.match(/([A-Za-z-]*(?:bot|crawler|spider))/i);
     return name ? name[1] : ua.split(/[\/\s;(]/)[0] || "Bot";
