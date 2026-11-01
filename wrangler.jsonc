@@ -1,17 +1,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "portfoliowebsite",
-  "main": "src/worker.js",
+  "pages_build_output_dir": ".",
   "compatibility_date": "2026-07-03",
-  "observability": {
-    "enabled": true
-  },
-  "assets": {
-    "directory": ".",
-    "binding": "ASSETS",
-    // Run the worker before serving files so every page view gets logged.
-    "run_worker_first": true
-  },
   "d1_databases": [
     {
       "binding": "DB",

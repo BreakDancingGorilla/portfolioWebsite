@@ -1,26 +1,24 @@
-// Logs page views to D1 and serves them at /_logs.txt?key=<LOGS_KEY>.
+// Pages middleware: logs page views to D1 and serves them at /_logs.txt?key=<LOGS_KEY>.
 
 const LOG_LIMIT = 1000;
 
-export default {
-  async fetch(request, env, ctx) {
-    const url = new URL(request.url);
+export async function onRequest({ request, env, next, waitUntil }) {
+  const url = new URL(request.url);
 
-    if (url.pathname === "/_logs.txt") {
-      return serveLogs(url, env);
-    }
+  if (url.pathname === "/_logs.txt") {
+    return serveLogs(url, env);
+  }
 
-    const response = await env.ASSETS.fetch(request);
+  const response = await next();
 
-    // Only log page loads, not every image/script/stylesheet request.
-    const type = response.headers.get("content-type") || "";
-    if (request.method === "GET" && type.includes("text/html")) {
-      ctx.waitUntil(logVisit(request, url, env));
-    }
+  // Only log page loads, not every image/script/stylesheet request.
+  const type = response.headers.get("content-type") || "";
+  if (request.method === "GET" && type.includes("text/html")) {
+    waitUntil(logVisit(request, url, env));
+  }
 
-    return response;
-  },
-};
+  return response;
+}
 
 async function logVisit(request, url, env) {
   const cf = request.cf || {};

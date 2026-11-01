@@ -3,7 +3,7 @@
 .claude
 .vscode
 node_modules
-src
+functions
 schema.sql
 wrangler.jsonc
 .wranglerignore
