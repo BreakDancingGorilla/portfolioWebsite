@@ -1,20 +1,33 @@
 // Pages middleware: logs page views to D1 and serves them at /_logs.txt?key=<LOGS_KEY>.
 
 const LOG_LIMIT = 1000;
+const SITE_HOST = "gabrielosborn.com";
+const DAY_MS = 24 * 60 * 60 * 1000;
 
 // Times are stored in UTC and shown in Eastern Time.
-const timeFormat = new Intl.DateTimeFormat("en-US", {
-  timeZone: "America/New_York",
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
+const TIME_ZONE = "America/New_York";
+
+const rowTimeFormat = new Intl.DateTimeFormat("en-US", {
+  timeZone: TIME_ZONE,
+  month: "short",
+  day: "numeric",
   hour: "numeric",
   minute: "2-digit",
-  second: "2-digit",
+});
+
+const headerTimeFormat = new Intl.DateTimeFormat("en-US", {
+  timeZone: TIME_ZONE,
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  hour: "numeric",
+  minute: "2-digit",
   timeZoneName: "short",
 });
 
-const formatTime = (iso) => timeFormat.format(new Date(iso));
+const BOT_PATTERN =
+  /bot|crawl|spider|slurp|scan|curl|wget|python|go-http|java\/|okhttp|axios|node-fetch|headless|httpx|zgrab|palo alto|censys|facebookexternalhit|preview/i;
 
 export async function onRequest({ request, env, next, waitUntil }) {
   const url = new URL(request.url);
@@ -63,31 +76,52 @@ async function serveLogs(url, env) {
     return new Response("Not found", { status: 404 });
   }
 
-  const [{ results: visits }, totals] = await Promise.all([
+  const [{ results: rows }, totals] = await Promise.all([
     env.DB.prepare("SELECT * FROM visits ORDER BY id DESC LIMIT ?").bind(LOG_LIMIT).all(),
-    env.DB.prepare(
-      `SELECT COUNT(*) AS total,
-              COUNT(DISTINCT ip) AS unique_ips,
-              SUM(time >= strftime('%Y-%m-%dT%H:%M:%fZ', 'now', '-1 day')) AS last_day
-       FROM visits`
-    ).first(),
+    env.DB.prepare("SELECT COUNT(*) AS total, COUNT(DISTINCT ip) AS unique_ips FROM visits").first(),
   ]);
 
+  const visits = rows.map(describeVisit);
+  const people = visits.filter((v) => !v.isBot);
+  const now = Date.now();
+  const since = (ms) => visits.filter((v) => now - v.date.getTime() < ms);
+  const last24h = since(DAY_MS);
+  const last7d = since(7 * DAY_MS);
+  const countPeople = (list) => list.filter((v) => !v.isBot).length;
+
   const lines = [
-    "gabrielosborn.com traffic log",
-    `Generated: ${formatTime(new Date().toISOString())}`,
-    `Total page views: ${totals.total}  |  Unique IPs: ${totals.unique_ips}  |  Last 24h: ${totals.last_day || 0}`,
-    `Showing the latest ${visits.length} visits (newest first)`,
+    rule("═"),
+    `  ${SITE_HOST.toUpperCase()} · TRAFFIC REPORT`,
+    `  Updated ${headerTimeFormat.format(new Date())}`,
+    rule("═"),
     "",
-    ...visits.map((v) =>
-      [
-        formatTime(v.time),
-        v.ip || "-",
-        [v.city, v.country].filter(Boolean).join(", ") || "-",
-        v.path,
-        `ref: ${v.referrer || "-"}`,
-        v.user_agent || "-",
-      ].join(" | ")
+    "SUMMARY",
+    rule("─"),
+    statLine("Page views (all time)", totals.total),
+    statLine("Unique visitors (IPs)", totals.unique_ips),
+    statLine("Last 24 hours", last24h.length, `${countPeople(last24h)} people, ${last24h.length - countPeople(last24h)} bots`),
+    statLine("Last 7 days", last7d.length, `${countPeople(last7d)} people, ${last7d.length - countPeople(last7d)} bots`),
+    "",
+    ...topList("TOP PAGES", people, (v) => v.page),
+    ...topList("TOP LOCATIONS", people, (v) => v.location),
+    ...topList("TOP REFERRERS", people, (v) => v.from),
+    ...topList("TOP DEVICES", people, (v) => v.device),
+    `(Top lists count people only, from the latest ${visits.length} visits.)`,
+    "",
+    `RECENT VISITS · newest first · times in ${shortZoneName()}`,
+    rule("─"),
+    table(
+      ["TIME", "WHO", "LOCATION", "DEVICE", "PAGE", "FROM", "IP ADDRESS"],
+      [17, 6, 22, 22, 16, 18, 0],
+      visits.map((v) => [
+        rowTimeFormat.format(v.date),
+        v.isBot ? "bot" : "person",
+        v.location,
+        v.device,
+        v.page,
+        v.from,
+        v.ip,
+      ])
     ),
   ];
 
@@ -97,4 +131,98 @@ async function serveLogs(url, env) {
       "cache-control": "no-store",
     },
   });
+}
+
+function describeVisit(row) {
+  const ua = row.user_agent || "";
+  return {
+    date: new Date(row.time),
+    ip: row.ip || "-",
+    isBot: !ua || BOT_PATTERN.test(ua),
+    location: [row.city, row.country].filter(Boolean).join(", ") || "Unknown",
+    device: describeDevice(ua),
+    page: row.path || "/",
+    from: describeReferrer(row.referrer),
+  };
+}
+
+function describeDevice(ua) {
+  if (!ua) return "Unknown";
+  if (BOT_PATTERN.test(ua)) {
+    const name = ua.match(/([A-Za-z-]*(?:bot|crawler|spider))/i);
+    return name ? name[1] : ua.split(/[\/\s;(]/)[0] || "Bot";
+  }
+
+  const browser =
+    /Edg\//.test(ua) ? "Edge" :
+    /OPR\/|Opera/.test(ua) ? "Opera" :
+    /SamsungBrowser/.test(ua) ? "Samsung" :
+    /Firefox\/|FxiOS/.test(ua) ? "Firefox" :
+    /Chrome\/|CriOS/.test(ua) ? "Chrome" :
+    /Safari\//.test(ua) ? "Safari" :
+    "Other";
+
+  const os =
+    /iPhone/.test(ua) ? "iPhone" :
+    /iPad/.test(ua) ? "iPad" :
+    /Android/.test(ua) ? "Android" :
+    /CrOS/.test(ua) ? "ChromeOS" :
+    /Windows/.test(ua) ? "Windows" :
+    /Macintosh|Mac OS X/.test(ua) ? "Mac" :
+    /Linux/.test(ua) ? "Linux" :
+    "Other";
+
+  return `${browser} · ${os}`;
+}
+
+function describeReferrer(referrer) {
+  if (!referrer) return "direct";
+  try {
+    const host = new URL(referrer).hostname.replace(/^www\./, "");
+    return host === SITE_HOST ? "(this site)" : host;
+  } catch {
+    return referrer;
+  }
+}
+
+function shortZoneName() {
+  const parts = headerTimeFormat.formatToParts(new Date());
+  return parts.find((p) => p.type === "timeZoneName")?.value || TIME_ZONE;
+}
+
+function rule(char) {
+  return char.repeat(78);
+}
+
+function statLine(label, value, note) {
+  const line = `  ${label.padEnd(24)}${String(value ?? 0).padStart(6)}`;
+  return note ? `${line}   (${note})` : line;
+}
+
+function topList(title, visits, keyOf, limit = 5) {
+  const counts = new Map();
+  for (const v of visits) {
+    const key = keyOf(v);
+    counts.set(key, (counts.get(key) || 0) + 1);
+  }
+  const top = [...counts].sort((a, b) => b[1] - a[1]).slice(0, limit);
+  return [
+    title,
+    rule("─"),
+    ...(top.length
+      ? top.map(([key, count]) => `  ${String(count).padStart(5)}  ${key}`)
+      : ["  (none yet)"]),
+    "",
+  ];
+}
+
+// Fixed-width columns; a width of 0 means "don't pad or truncate".
+function table(headers, widths, rows) {
+  const fit = (text, width) => {
+    const s = String(text);
+    if (!width) return s;
+    return s.length > width ? s.slice(0, width - 1) + "…" : s.padEnd(width);
+  };
+  const format = (cells) => cells.map((c, i) => fit(c, widths[i])).join("  ").trimEnd();
+  return [format(headers), ...rows.map(format)].join("\n");
 }
