@@ -26,8 +26,11 @@ export async function onRequest({ request, env, next, waitUntil }) {
   const response = await next();
 
   // Only log page loads, not every image/script/stylesheet request.
+  // Missing files like /favicon.ico fall back to index.html, so also skip
+  // any path with a file extension other than .html.
   const type = response.headers.get("content-type") || "";
-  if (request.method === "GET" && type.includes("text/html")) {
+  const isPagePath = !/\.[a-z0-9]+$/i.test(url.pathname) || url.pathname.endsWith(".html");
+  if (request.method === "GET" && type.includes("text/html") && isPagePath) {
     waitUntil(logVisit(request, url, env));
   }
 
