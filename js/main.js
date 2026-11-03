@@ -2,10 +2,14 @@ const favicon = document.getElementById('favicon');
 const originalTitle = document.title;
 let scrollInterval;
 
+// Phones and tablets have no visible tab favicon or mouse cursor, so skip
+// the spinning rat (a 1.2 MB spritesheet) and the cursor trail there.
+const isTouch = window.matchMedia('(hover: none)').matches;
+
 // --- 1. SPINNING RAT LOGIC ---
 const sprite = new Image();
 sprite.crossOrigin = "anonymous";
-sprite.src = './assets/images/spritesheet.png';
+if (!isTouch) sprite.src = './assets/images/spritesheet.png';
 
 let currentFrame = 0;
 const totalFrames = 150;
@@ -96,4 +100,4 @@ function drawTrail() {
     }
     requestAnimationFrame(drawTrail);
 }
-drawTrail();
+if (!isTouch) drawTrail();

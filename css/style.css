@@ -275,3 +275,27 @@ body {
     position: absolute;
     left: -9999px;
 }
+
+/* --- Phones --- */
+@media (max-width: 576px) {
+    #siteList {
+        padding: 8px;
+    }
+
+    #socialLinks {
+        justify-content: center;
+        flex-wrap: wrap;
+        row-gap: 4px;
+    }
+
+    #socialLinks .navText {
+        padding: 8px 10px;
+    }
+
+    /* Bigger tap targets for Play and form buttons. */
+    .btn-primary {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+}
