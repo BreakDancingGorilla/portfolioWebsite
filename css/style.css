@@ -299,3 +299,184 @@ body {
         align-items: center;
     }
 }
+
+#role {
+    color: #aaa;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+}
+
+.title-icon {
+    color: #ffc107;
+    font-size: 1.4rem;
+}
+
+/* --- About Page --- */
+.about-hero {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.about-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffc107;
+    box-shadow: 0 0 25px rgba(255, 193, 7, 0.4);
+}
+
+.about-role {
+    color: #39FF14;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+}
+
+.about-text {
+    color: #ccc;
+    font-size: 1.1rem;
+    max-width: 720px;
+}
+
+.skill-group {
+    background-color: #0B0C10;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 1.25rem;
+    height: 100%;
+}
+
+.skill-group h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+}
+
+.skill-group h3 i,
+.now-list i {
+    color: #ffc107;
+    margin-right: 0.4rem;
+}
+
+.skill-tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tags li {
+    border: 1px solid #39FF14;
+    color: #39FF14;
+    border-radius: 20px;
+    padding: 2px 12px;
+    font-size: 0.9rem;
+}
+
+.now-list {
+    list-style: none;
+    padding: 0;
+    color: #ccc;
+    font-size: 1.05rem;
+}
+
+.now-list li {
+    margin-bottom: 0.5rem;
+}
+
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.stat {
+    background-color: #0B0C10;
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    color: #39FF14;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.stat-label {
+    color: #aaa;
+}
+
+.connect-btn {
+    border: 1px solid #39FF14;
+    gap: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+@media (max-width: 576px) {
+    .about-hero {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* --- Mac Apps Page --- */
+.app-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.app-head img {
+    border-radius: 14px;
+}
+
+.app-version {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.app-desc {
+    color: #ddd;
+}
+
+.app-needs-title {
+    color: #ffc107;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.app-needs {
+    padding-left: 1.1rem;
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+}
+
+.app-size {
+    font-weight: normal;
+    opacity: 0.8;
+}
+
+.open-help {
+    background-color: #0B0C10;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 1.25rem;
+    color: #ccc;
+}
+
+.apps code,
+.open-help code {
+    color: #39FF14;
+}

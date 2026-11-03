@@ -11,6 +11,10 @@
       href="./assets/images/cat.jpg"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Browser games and web projects by Gabriel Osborn, a web and game developer from Lancaster, Ohio."
+    />
 
     <!-- Bootstrap must load BEFORE style.css so our overrides win. -->
     <link
@@ -19,7 +23,11 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link href="./css/style.css?v=1.3" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link href="./css/style.css?v=1.6" rel="stylesheet" />
   </head>
 
   <body>
@@ -49,19 +57,26 @@
           <span id="title">
             <span class="fs-4 text-white">Home Of The King</span>
             <span id="aka" class="rainbow-text-animated">AKA FoodStampChamp</span>
+            <span id="role">Web &amp; Game Developer</span>
           </span>
         </a>
         <ul class="nav nav-pills align-items-center" id="socialLinks">
+          <li class="nav-item">
+            <a class="nav-link navText" href="/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navText" href="/apps">Mac Apps</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link navText" href="/commission">Commissions</a>
           </li>
           <li class="nav-item">
             <a
               class="nav-link p-1"
-              href="https://discord.com/users/1500138173378859079"
+              href="https://discord.gg/ZpZXJVcCH"
               target="_blank"
               rel="noopener noreferrer"
-              ><img class="socialLink" src="./assets/icons/discord.svg" alt="Discord"
+              ><img class="socialLink" src="./assets/icons/discord.svg" alt="Discord server"
             /></a>
           </li>
           <li class="nav-item">
@@ -97,11 +112,10 @@
         <div class="card-body">
           <h5 class="card-title">
             Change Game
-            <img loading="lazy" alt="" src="./assets/images/money.gif" class="title-gif" />
+            <i class="bi bi-cash-coin title-icon" aria-hidden="true"></i>
           </h5>
           <p class="card-text">
-            Made in collaboration with Kayne West and proundly sponsored by
-            Yeezy
+            A cashier training game. Practice counting back the right change for each transaction.
           </p>
           <div class="playBox">
             <a
@@ -152,11 +166,10 @@
         />
         <div class="card-body">
           <h5 class="card-title">
-            Dice Game <img loading="lazy" alt="" src="./assets/images/dice.gif" class="title-gif" />
+            Dice Game <i class="bi bi-dice-5 title-icon" aria-hidden="true"></i>
           </h5>
           <p class="card-text">
-            Looking for a RainBet sponsorship contact:
-            bootyBoobyBobby@hotmail.com
+            A dice battler built around a 3D dice-rolling API. Roll, fight enemies and earn gold.
           </p>
           <div class="playBox">
             <a
@@ -207,9 +220,11 @@
         <div class="card-body">
           <h5 class="card-title">
             Zombie Game
-            <img loading="lazy" alt="" src="./assets/images/zombieMine.gif" class="title-gif" />
+            <i class="bi bi-crosshair title-icon" aria-hidden="true"></i>
           </h5>
-          <p class="card-text">Stolen from Terry Davis</p>
+          <p class="card-text">
+            A top-down zombie shooter. Move with the arrow keys, aim with the mouse and survive.
+          </p>
           <div class="playBox">
             <a
               href="https://breakdancinggorilla.github.io/zombies/"
@@ -254,15 +269,14 @@
         <img loading="lazy" decoding="async"
           src="./assets/images/obamaGame.gif"
           class="card-img-top"
-          alt="Obama Mainframe"
+          alt="3D Canvas Demo"
         />
         <div class="card-body">
           <h5 class="card-title">
-            Obama Mainframe<img loading="lazy" alt="" src="./assets/images/obamaPr.gif" class="title-gif"
-            />
+            3D Canvas Demo <i class="bi bi-box title-icon" aria-hidden="true"></i>
           </h5>
           <p class="card-text">
-            First attempt to capture Obama's soul in a cube
+            A practice project drawing a 3D scene on a 2D canvas from scratch.
           </p>
           <div class="playBox">
             <a
@@ -312,10 +326,11 @@
         />
         <div class="card-body">
           <h5 class="card-title">
-            Pathfinding<img loading="lazy" alt="" src="./assets/images/Artificial Intelligence Happy Dance Sticker by achorao_com.gif" class="title-gif"
-            />
+            Pathfinding <i class="bi bi-signpost-split title-icon" aria-hidden="true"></i>
           </h5>
-          <p class="card-text">Stright up a chatgpt copy and paste</p>
+          <p class="card-text">
+            A grid pathfinding demo that finds the shortest route around walls.
+          </p>
           <div class="playBox">
             <a
               href="https://breakdancinggorilla.github.io/gridGame/"
@@ -364,9 +379,11 @@
         />
         <div class="card-body">
           <h5 class="card-title">
-            Data Entry<img loading="lazy" alt="" src="./assets/images/excel.gif" class="title-gif" />
+            Data Entry <i class="bi bi-table title-icon" aria-hidden="true"></i>
           </h5>
-          <p class="card-text">⚠️Warning: contains Excel⚠️</p>
+          <p class="card-text">
+            A data entry table for tracking personal pitfalls across mind, emotion, body and purpose.
+          </p>
           <div class="playBox">
             <a
               href="https://breakdancinggorilla.github.io/pitfallWeb/"
@@ -415,10 +432,10 @@
         />
         <div class="card-body">
           <h5 class="card-title">
-            Open World<img loading="lazy" alt="" src="./assets/images/trump.gif" class="title-gif" />
+            Open World <i class="bi bi-globe-americas title-icon" aria-hidden="true"></i>
           </h5>
           <p class="card-text">
-            Backed by over 500 Patron supporters, set to release this fall!
+            An open world sandbox in progress, with movement and combat against training dummies.
           </p>
           <div class="playBox">
             <a
@@ -468,11 +485,10 @@
         />
         <div class="card-body">
           <h5 class="card-title">
-            Bounty Board<img loading="lazy" alt="" src="./assets/images/kanye.gif" class="title-gif"
-            />
+            Bounty Board <i class="bi bi-pin-map title-icon" aria-hidden="true"></i>
           </h5>
           <p class="card-text">
-            A board for the fish hunters of upstate New York
+            A wanted-poster web page with bounty cards and map locations.
           </p>
           <div class="playBox">
             <a
@@ -512,6 +528,10 @@
       </div>
     </div>
 
+    <footer class="container py-4 border-top border-warning text-secondary small text-center">
+      © <span id="year"></span> Gabriel Osborn
+    </footer>
+
     <!-- Scripts -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -519,5 +539,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="./js/main.js?v=1.3"></script>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
