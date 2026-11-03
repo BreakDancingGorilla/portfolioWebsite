@@ -1,5 +1,5 @@
 const favicon = document.getElementById('favicon');
-const originalTitle = "Gangsta Play";
+const originalTitle = document.title;
 let scrollInterval;
 
 // --- 1. SPINNING RAT LOGIC ---

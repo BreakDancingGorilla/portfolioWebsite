@@ -9,3 +9,15 @@ CREATE TABLE IF NOT EXISTS visits (
   user_agent TEXT,
   network TEXT
 );
+
+CREATE TABLE IF NOT EXISTS commissions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  time TEXT NOT NULL,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  type TEXT NOT NULL,
+  budget TEXT,
+  deadline TEXT,
+  details TEXT NOT NULL,
+  ip TEXT
+);

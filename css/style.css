@@ -174,3 +174,104 @@ body {
     justify-content: center;
     padding: 40px;
 }
+
+/* --- Header nav text links --- */
+.navText {
+    color: #ffc107 !important;
+    font-weight: bold;
+}
+
+.navText:hover,
+.navText.active {
+    background-color: transparent !important;
+    color: #39FF14 !important;
+}
+
+/* --- Commission Page --- */
+.commission-lead {
+    max-width: 640px;
+}
+
+.status-badge {
+    background-color: #0B0C10;
+    color: #39FF14;
+    border: 1px solid #39FF14;
+    padding: 8px 14px;
+}
+
+.section-heading {
+    font-size: 1.4rem;
+    color: #ffc107;
+    margin-bottom: 1.25rem;
+}
+
+.commission .price {
+    color: #39FF14;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+.service-list {
+    padding-left: 1.1rem;
+    color: #ccc;
+}
+
+.turnaround {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.steps {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.steps li {
+    counter-increment: step;
+    background-color: #0B0C10;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    color: #ccc;
+}
+
+.steps li::before {
+    content: counter(step);
+    color: #ffc107;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.steps strong {
+    color: white;
+}
+
+.commission .gray.card:hover {
+    transform: none;
+}
+
+.commission .form-control,
+.commission .form-select {
+    background-color: #121212;
+    border-color: #444;
+}
+
+.commission .form-control:focus,
+.commission .form-select:focus {
+    border-color: #39FF14;
+    box-shadow: 0 0 0 0.2rem rgba(57, 255, 20, 0.25);
+}
+
+.hp-field {
+    position: absolute;
+    left: -9999px;
+}
