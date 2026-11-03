@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
 
-    <title>Mac Apps · Gabriel Osborn</title>
+    <title>Apps &amp; Bots · Gabriel Osborn</title>
     <meta
       name="description"
-      content="Free Mac apps by Gabriel Osborn: Media Downloader, Discord Splitter and Procon2 KBM."
+      content="Free Mac apps and Discord bots by Gabriel Osborn: Media Downloader, Discord Splitter, Procon2 KBM, Skull Bot and Mog Battle."
     />
     <link
       id="favicon"
@@ -27,7 +27,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
-    <link href="./css/style.css?v=1.6" rel="stylesheet" />
+    <link href="./css/style.css?v=1.7" rel="stylesheet" />
   </head>
 
   <body>
@@ -66,7 +66,7 @@
             <a class="nav-link navText" href="/about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link navText active" href="/apps">Mac Apps</a>
+            <a class="nav-link navText active" href="/apps">Apps &amp; Bots</a>
           </li>
           <li class="nav-item">
             <a class="nav-link navText" href="/commission">Commissions</a>
@@ -99,14 +99,16 @@
 
       <main class="apps">
         <section class="text-center mb-5">
-          <h1 class="display-5 fw-bold">Mac Apps</h1>
+          <h1 class="display-5 fw-bold">Apps &amp; Bots</h1>
           <p class="lead text-secondary mx-auto commission-lead">
-            Free tools I built for macOS. Download, unzip, and follow the
-            README inside.
+            Free Mac apps you can download, and the Discord bots running in my
+            server.
           </p>
         </section>
 
         <section class="mb-5">
+          <h2 class="section-heading">Mac Apps</h2>
+          <p class="text-secondary">Download, unzip, and follow the README inside.</p>
           <div class="row g-4">
           <div class="col-lg-4">
             <div class="gray card h-100 m-0">
@@ -208,6 +210,64 @@
               <li>Go to <strong>System Settings → Privacy &amp; Security</strong>.</li>
               <li>Scroll down and click <strong>Open Anyway</strong>.</li>
             </ol>
+          </div>
+        </section>
+
+        <section class="mb-5" id="bots">
+          <h2 class="section-heading">Discord Bots</h2>
+          <p class="text-secondary">
+            Both run in my server, so join to try them. Want one for your own
+            server? <a class="link-warning" href="/commission">Request a custom bot</a>.
+          </p>
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <div class="gray card h-100 m-0">
+                <div class="card-body d-flex flex-column">
+                  <div class="app-head">
+                    <span class="bot-icon" aria-hidden="true">💀</span>
+                    <div>
+                      <h5 class="mb-0">Skull Bot</h5>
+                      <span class="app-version">Stats, ranks and games</span>
+                    </div>
+                  </div>
+                  <p class="app-desc">Counts the 💀 reactions each member gets, ranks everyone on a live leaderboard, and adds games and tools to the server.</p>
+                  <ul class="service-list">
+                    <li>Rank roles assigned automatically as skulls add up</li>
+                    <li>Coin games: blackjack, slots, coin flip, dice and horse races</li>
+                    <li>Reminders and message translation</li>
+                  </ul>
+                  <p class="app-needs-title">Built with</p>
+                  <p class="app-built">Node.js, discord.js, SQLite</p>
+                  <a class="btn btn-primary connect-btn mt-auto align-self-start" href="https://discord.gg/ZpZXJVcCH" target="_blank" rel="noopener noreferrer">
+                    <i class="bi bi-discord"></i> Try it in my server
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="gray card h-100 m-0">
+                <div class="card-body d-flex flex-column">
+                  <div class="app-head">
+                    <span class="bot-icon" aria-hidden="true">⚔️</span>
+                    <div>
+                      <h5 class="mb-0">Mog Battle</h5>
+                      <span class="app-version">Photo battles</span>
+                    </div>
+                  </div>
+                  <p class="app-desc">Challenge another member to a head-to-head photo battle, then let the whole server vote on the winner.</p>
+                  <ul class="service-list">
+                    <li>Challenge someone with <code>/mog</code> and a photo</li>
+                    <li>Photos post side by side for a 24-hour vote</li>
+                    <li>Win and loss stats with a leaderboard</li>
+                  </ul>
+                  <p class="app-needs-title">Built with</p>
+                  <p class="app-built">Node.js, discord.js, SQLite, canvas image generation</p>
+                  <a class="btn btn-primary connect-btn mt-auto align-self-start" href="https://discord.gg/ZpZXJVcCH" target="_blank" rel="noopener noreferrer">
+                    <i class="bi bi-discord"></i> Try it in my server
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
